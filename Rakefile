@@ -12,7 +12,7 @@ begin
     gem.authors = ["Mathias Dalheimer"]
     gem.add_dependency "flukso4r", ">= 0.3.1"
     gem.add_dependency "mongrel", ">= 1.1.5"
-    gem.bindir='bin'
+    #gem.bindir='bin'
     gem.executables=FileList["bin/**/*"]
     gem.default_executable = 'msg-chumby-daemon'
     gem.files = FileList["[A-Z]*", "{bin,widget,lib,test}/**/*"]
