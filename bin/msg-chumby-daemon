@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+libpath=File.join(File.dirname(__FILE__), '..', 'lib')
+$:.unshift << libpath 
+puts "Using libraty path #{$:.join(":")}" 
+require 'rubygems'        # if you use RubyGems
+require 'lib/msg-chumby-daemon.rb'
+
+server=MSG_Chumby::HTTP_XML_Server.new("127.0.0.1", 3000);
+trap("INT") {server.stop(); exit}
+trap("KILL") {server.stop(); exit}
+
+server.start();
+server.join();
