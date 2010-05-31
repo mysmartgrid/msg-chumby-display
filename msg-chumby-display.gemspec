@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
-  s.executables = ["bin/gserver.rb", "bin/msg-chumby-daemon", "bin/simple-mongrel.rb"]
+  s.executables = ["bin/msg-chumby-daemon"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -23,13 +23,16 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "bin/gserver.rb",
      "bin/msg-chumby-daemon",
-     "bin/simple-mongrel.rb",
      "lib/msg-chumby-daemon.rb",
+     "lib/msg-chumby-daemon/http-xml-server.rb",
+     "lib/msg-chumby-daemon/reading-cache.rb",
+     "lib/msg-chumby-daemon/reading-importer.rb",
      "lib/msg-chumby-display.rb",
      "test/helper.rb",
-     "test/test_msg-chumby-display.rb"
+     "test/test_msg-chumby-display.rb",
+     "widget/currentpower/currentpower.fla",
+     "widget/currentpower/currentpower.swf"
   ]
   s.homepage = %q{http://github.com/gonium/msg-chumby-display}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -46,18 +49,15 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_runtime_dependency(%q<flukso4r>, [">= 0.3.1"])
-      s.add_runtime_dependency(%q<daemons>, [">= 1.0.10"])
+      s.add_runtime_dependency(%q<mongrel>, [">= 1.1.5"])
     else
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
-      s.add_dependency(%q<daemons>, [">= 1.0.10"])
+      s.add_dependency(%q<mongrel>, [">= 1.1.5"])
     end
   else
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
     s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
-    s.add_dependency(%q<daemons>, [">= 1.0.10"])
+    s.add_dependency(%q<mongrel>, [">= 1.1.5"])
   end
 end
 

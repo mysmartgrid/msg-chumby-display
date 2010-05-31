@@ -15,7 +15,7 @@ begin
     gem.bindir='bin'
     gem.executables=FileList["bin/**/*"]
     gem.default_executable = 'msg-chumby-daemon'
-    gem.files = FileList["[A-Z]*", "{bin,lib,test}/**/*"]
+    gem.files = FileList["[A-Z]*", "{bin,widget,lib,test}/**/*"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
