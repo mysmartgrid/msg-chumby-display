@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
-  s.executables = ["bin/msg-chumby-daemon"]
+  s.executables = ["msg-chumby-daemon"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
