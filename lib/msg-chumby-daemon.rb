@@ -1,3 +1,5 @@
-require 'rubygems'        # if you use RubyGems
+require 'rubygems'      
+require 'flukso'
 require 'lib/msg-chumby-daemon/http-xml-server.rb'
+require 'lib/msg-chumby-daemon/reading-cache.rb'
 

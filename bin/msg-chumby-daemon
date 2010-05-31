@@ -3,12 +3,22 @@
 libpath=File.join(File.dirname(__FILE__), '..', 'lib')
 $:.unshift << libpath 
 puts "Using libraty path #{$:.join(":")}" 
-require 'rubygems'        # if you use RubyGems
+require 'rubygems'
 require 'lib/msg-chumby-daemon.rb'
 
-server=MSG_Chumby::HTTP_XML_Server.new("127.0.0.1", 3000);
-trap("INT") {server.stop(); exit}
-trap("KILL") {server.stop(); exit}
+reading_cache=MSG_Chumby::Reading_Cache.new();
+$server=MSG_Chumby::HTTP_XML_Server.new("127.0.0.1", 3000, reading_cache);
 
-server.start();
-server.join();
+def startAll
+  $server.start();
+  $server.join();
+end
+
+def stopAll
+  $server.stop();
+  exit;
+end
+
+trap("INT") {stopAll();}
+trap("KILL") {stopAll();}
+startAll();
