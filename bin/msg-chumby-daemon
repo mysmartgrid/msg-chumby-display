@@ -4,7 +4,7 @@ libpath=File.join(File.dirname(__FILE__), '..', 'lib')
 $:.unshift << libpath 
 #puts "Using library path #{$:.join(":")}" 
 require 'rubygems'
-require 'lib/msg-chumby-daemon.rb'
+require 'msg-chumby-daemon.rb'
 
 reading_cache=MSG_Chumby::Reading_Cache.new();
 $demo_importer=MSG_Chumby::DemoReadingImporter.new(reading_cache, 400);
