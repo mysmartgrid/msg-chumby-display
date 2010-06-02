@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{msg-chumby-display}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mathias Dalheimer"]
-  s.date = %q{2010-05-31}
+  s.date = %q{2010-06-02}
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
@@ -31,7 +31,9 @@ Gem::Specification.new do |s|
      "lib/msg-chumby-display.rb",
      "test/helper.rb",
      "test/test_msg-chumby-display.rb",
+     "widget/currentpower/Makefile",
      "widget/currentpower/currentpower.fla",
+     "widget/currentpower/currentpower.html",
      "widget/currentpower/currentpower.swf"
   ]
   s.homepage = %q{http://github.com/gonium/msg-chumby-display}
@@ -51,13 +53,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<flukso4r>, [">= 0.3.1"])
       s.add_runtime_dependency(%q<mongrel>, [">= 1.1.5"])
+      s.add_runtime_dependency(%q<xml-simple>, [">= 1.0.12"])
     else
       s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
+      s.add_dependency(%q<xml-simple>, [">= 1.0.12"])
     end
   else
     s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
+    s.add_dependency(%q<xml-simple>, [">= 1.0.12"])
   end
 end
 
