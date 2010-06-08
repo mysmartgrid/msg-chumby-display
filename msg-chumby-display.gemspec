@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{msg-chumby-display}
-  s.version = "0.0.2"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mathias Dalheimer"]
-  s.date = %q{2010-06-02}
+  s.date = %q{2010-06-08}
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
