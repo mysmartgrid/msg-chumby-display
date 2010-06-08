@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'xmlsimple'
 require 'mongrel'
+#require 'pp'
 
 module MSG_Chumby
   $counter=0;
@@ -48,6 +49,39 @@ module MSG_Chumby
     end
   end
 
+  class LastHourHandler < Mongrel::HttpHandler
+    def initialize(reading_cache)
+      @reading_cache=reading_cache;
+    end
+    def process(request, response)
+      response.start(200) do |head,out|
+        head["Content-Type"] = "text/xml"
+        readings=(@reading_cache.last_hour())  
+        # Even if there are currently no readings we need to provide
+        # them.
+        if readings==nil
+          readings = Array.new();
+          (0..59).each {|i|
+            timestamp = Time.now.to_i - (i * 60)
+            readings << Flukso::UTCReading.new(timestamp, 0.0) 
+          }
+        end
+        flat_data=Array.new;
+        readings.each{|reading|
+          if (reading.value*1.0).nan?
+            # Skip NaN values.
+          else
+            time=Time.at(reading.utc_timestamp);
+            current_reading=
+              {'time' => [ time.strftime("%H:%M:%S")], 'value' => [reading.value]};
+            flat_data << current_reading
+          end
+        }
+        #pp flat_data
+        out.write(XmlSimple.xml_out( { 'reading' => flat_data} ,{'RootName' => "last_hour"}));
+      end
+    end
+  end
 
   class HTTP_XML_Server
     def initialize(host, port, reading_cache)
@@ -55,6 +89,7 @@ module MSG_Chumby
       @server.register("/time", TimeHandler.new)
       @server.register("/reset", ResetHandler.new)
       @server.register("/last_reading", LastReadingHandler.new(reading_cache))
+      @server.register("/last_hour", LastHourHandler.new(reading_cache))
     end
     def start
       @threads=@server.run

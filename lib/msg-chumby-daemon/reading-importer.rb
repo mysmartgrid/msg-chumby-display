@@ -5,21 +5,44 @@ if __FILE__ == $0
 end
 
 module MSG_Chumby
+  BASE_URL="https://api.mysmartgrid.de/sensor"
   class DemoReadingImporter
     def initialize(reading_cache, max_reading)
       @reading_cache=reading_cache
       @max_reading=max_reading
     end
     def doWork
-        loop do
-          value=rand(@max_reading)
-          reading=Flukso::UTCReading.new(Time.now.to_i, value)
-          #puts "generated random reading #{reading}"
-          @reading_cache.update_last_reading(reading);
-          sleep(3);
-        end
+      value=rand(@max_reading)
+      reading=Flukso::UTCReading.new(Time.now.to_i, value)
+      #puts "generated random reading #{reading}"
+      @reading_cache.update_last_reading(reading);
     end
   end
+  class LastHourImporter
+    def initialize(reading_cache, sensor_id, token)
+      @reading_cache=reading_cache
+      auth=Flukso::TokenAuth.new(token);
+      @api=Flukso::API.new(auth, BASE_URL);
+      @query=Flukso::QueryReadings.new(sensor_id, :hour, :watt)
+    end
+    def doWork
+      begin
+        puts "before query"
+        readings=@query.execute(@api);
+        puts "after query"
+      rescue Exception => e
+        puts "Query failed: #{e}"
+        puts "Used #{BASE_URL} as BASE_URL"
+        exit(-10);
+      end
+      puts "Got Response:"
+      readings.each{|reading|
+        puts reading
+      }
+      @reading_cache.update_last_hour(readings);
+    end
+  end
+
 end
 
 if __FILE__ == $0

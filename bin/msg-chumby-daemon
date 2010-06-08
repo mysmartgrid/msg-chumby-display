@@ -6,23 +6,49 @@ $:.unshift << libpath
 require 'rubygems'
 require 'msg-chumby-daemon.rb'
 
+#TODO: Make generic. This is the ID of the CC-HPC flukso.
+sensor_id="67e9fa794684e4902730be208e9d734e"
+token="bb8640e074de14b9d444be7b1359707f"
+
 reading_cache=MSG_Chumby::Reading_Cache.new();
 $demo_importer=MSG_Chumby::DemoReadingImporter.new(reading_cache, 400);
-$importer_thread=nil;
-$server=MSG_Chumby::HTTP_XML_Server.new("127.0.0.1", 3000, reading_cache);
+$lasthour_importer=MSG_Chumby::LastHourImporter.new(reading_cache, sensor_id, token);
+$shortterm_thread=nil;
+$longterm_thread=nil;
+$server=MSG_Chumby::HTTP_XML_Server.new("0.0.0.0", 3000, reading_cache);
+
 
 def startAll
   $server.start();
-  $importer_thread=Thread.new() {
-    $demo_importer.doWork();
+  $shortterm_thread=Thread.new() {
+    loop do
+      puts "Running short term import" 
+      begin
+        $demo_importer.doWork();
+      rescue StandardError => e
+        puts "ERROR in short-term thread: #{e}"
+      end
+      sleep(3);
+    end
+  }
+  $longterm_thread=Thread.new() {
+    loop do
+      puts "Running long term import" 
+      begin
+        $lasthour_importer.doWork();
+      rescue StandardError => e
+        puts "ERROR in long-term thread: #{e}"
+      end
+      sleep(10);
+    end
   }
   $server.join();
-  $importer_thread.join();
 end
 
 def stopAll
+  $shortterm_thread.stop() unless $importer_thread.stop?;
+  $longterm_thread.stop() unless $importer_thread.stop?;
   $server.stop() 
-  $importer_thread.stop() unless $importer_thread.stop?;
   exit;
 end
 

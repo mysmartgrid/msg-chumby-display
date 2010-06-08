@@ -5,6 +5,8 @@ module MSG_Chumby
     def initialize
       @last_reading=nil;
       @last_reading_mutex=Mutex.new();
+      @last_hour=nil;
+      @last_hour_mutex=Mutex.new();
     end
     def update_last_reading(reading)
       raise "Please provide a UTCReading instance" if reading.class != Flukso::UTCReading
@@ -19,5 +21,19 @@ module MSG_Chumby
       end
       return retval
     end
+    def update_last_hour(readings)
+      raise "Please provide an Array instance" if readings.class != Array
+      @last_hour_mutex.synchronize do
+        @last_hour=readings
+      end
+    end
+    def last_hour
+      retval=nil
+      @last_hour_mutex.synchronize do
+        retval=@last_hour
+      end
+      return retval
+    end
+
   end
 end
