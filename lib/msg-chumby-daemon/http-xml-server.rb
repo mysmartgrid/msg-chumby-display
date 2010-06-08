@@ -68,9 +68,9 @@ module MSG_Chumby
         end
         flat_data=Array.new;
         readings.each{|reading|
-          if (reading.value*1.0).nan?
+          if not reading.nan? #(reading.value*1.0).nan?
             # Skip NaN values.
-          else
+          #else
             time=Time.at(reading.utc_timestamp);
             current_reading=
               {'time' => [ time.strftime("%H:%M:%S")], 'value' => [reading.value]};
@@ -82,6 +82,41 @@ module MSG_Chumby
       end
     end
   end
+  class LastDayHandler < Mongrel::HttpHandler
+    def initialize(reading_cache)
+      @reading_cache=reading_cache;
+    end
+    def process(request, response)
+      response.start(200) do |head,out|
+        head["Content-Type"] = "text/xml"
+        readings=(@reading_cache.last_day())  
+        # Even if there are currently no readings we need to provide
+        # them.
+        if readings==nil
+          readings = Array.new();
+          (0..95).each {|i|
+            timestamp = Time.now.to_i - (i * 60 * 15)
+            readings << Flukso::UTCReading.new(timestamp, 0.0) 
+          }
+        end
+        flat_data=Array.new;
+        readings.each{|reading|
+          if not reading.nan? #(reading.value*1.0).nan?
+            # Skip NaN values.
+            time=Time.at(reading.utc_timestamp);
+            current_reading= {
+              'dayofyear' => [ time.strftime("%j")], 
+              'time' => [ time.strftime("%H:%M:%S")], 
+              'value' => [reading.value]
+            };
+            flat_data << current_reading
+          end
+        }
+        #pp flat_data
+        out.write(XmlSimple.xml_out( { 'reading' => flat_data} ,{'RootName' => "last_day"}));
+      end
+    end
+  end
 
   class HTTP_XML_Server
     def initialize(host, port, reading_cache)
@@ -90,6 +125,7 @@ module MSG_Chumby
       @server.register("/reset", ResetHandler.new)
       @server.register("/last_reading", LastReadingHandler.new(reading_cache))
       @server.register("/last_hour", LastHourHandler.new(reading_cache))
+      @server.register("/last_day", LastDayHandler.new(reading_cache))
     end
     def start
       @threads=@server.run

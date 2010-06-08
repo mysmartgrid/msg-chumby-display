@@ -13,6 +13,7 @@ token="bb8640e074de14b9d444be7b1359707f"
 reading_cache=MSG_Chumby::Reading_Cache.new();
 $demo_importer=MSG_Chumby::DemoReadingImporter.new(reading_cache, 400);
 $lasthour_importer=MSG_Chumby::LastHourImporter.new(reading_cache, sensor_id, token);
+$lastday_importer=MSG_Chumby::LastDayImporter.new(reading_cache, sensor_id, token);
 $shortterm_thread=nil;
 $longterm_thread=nil;
 $server=MSG_Chumby::HTTP_XML_Server.new("0.0.0.0", 3000, reading_cache);
@@ -36,6 +37,7 @@ def startAll
       puts "Running long term import" 
       begin
         $lasthour_importer.doWork();
+        $lastday_importer.doWork();
       rescue StandardError => e
         puts "ERROR in long-term thread: #{e}"
       end

@@ -27,21 +27,42 @@ module MSG_Chumby
     end
     def doWork
       begin
-        puts "before query"
         readings=@query.execute(@api);
-        puts "after query"
       rescue Exception => e
         puts "Query failed: #{e}"
         puts "Used #{BASE_URL} as BASE_URL"
         exit(-10);
       end
-      puts "Got Response:"
-      readings.each{|reading|
-        puts reading
-      }
+      #puts "Got Response:"
+      #readings.each{|reading|
+      #  puts reading
+      #}
       @reading_cache.update_last_hour(readings);
     end
   end
+  class LastDayImporter
+    def initialize(reading_cache, sensor_id, token)
+      @reading_cache=reading_cache
+      auth=Flukso::TokenAuth.new(token);
+      @api=Flukso::API.new(auth, BASE_URL);
+      @query=Flukso::QueryReadings.new(sensor_id, :day, :watt)
+    end
+    def doWork
+      begin
+        readings=@query.execute(@api);
+      rescue Exception => e
+        puts "Query failed: #{e}"
+        puts "Used #{BASE_URL} as BASE_URL"
+        exit(-10);
+      end
+      #puts "Got Response:"
+      #readings.each{|reading|
+      #  puts reading
+      #}
+      @reading_cache.update_last_day(readings);
+    end
+  end
+
 
 end
 
