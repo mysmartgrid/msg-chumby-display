@@ -1,0 +1,8 @@
+# These are the access parameters of the CC-HPC demo flukso - replace
+# with your own parameters!
+ACCESS_TOKEN: "bb8640e074de14b9d444be7b1359707f"
+SENSOR_ID: "67e9fa794684e4902730be208e9d734e"
+FLUKSO_LOCATION_METHOD: "static"
+FLUKSO_HOST: "192.168.1.102"
+FLUKSO_PORT: "80"
+FLUKSO_LOCAL_ID: "d69779ec53a9323b695ee86b5328dd28"

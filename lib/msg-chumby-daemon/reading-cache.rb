@@ -5,6 +5,8 @@ module MSG_Chumby
     def initialize
       @last_reading=nil;
       @last_reading_mutex=Mutex.new();
+      @last_minute=nil;
+      @last_minute_mutex=Mutex.new();
       @last_hour=nil;
       @last_hour_mutex=Mutex.new();
       @last_day=nil;
@@ -23,6 +25,20 @@ module MSG_Chumby
       end
       return retval
     end
+    def update_last_minute(readings)
+      raise "Please provide an Array instance" if readings.class != Array
+      @last_minute_mutex.synchronize do
+        @last_minute=readings
+      end
+    end
+    def last_minute
+      retval=nil
+      @last_minute_mutex.synchronize do
+        retval=@last_minute
+      end
+      return retval
+    end
+ 
     def update_last_hour(readings)
       raise "Please provide an Array instance" if readings.class != Array
       @last_hour_mutex.synchronize do

@@ -6,7 +6,8 @@ end
 
 module MSG_Chumby
   BASE_URL="https://api.mysmartgrid.de/sensor"
-  class DemoReadingImporter
+  # Generates random readings for standalone demos.
+  class RandomReadingImporter
     def initialize(reading_cache, max_reading)
       @reading_cache=reading_cache
       @max_reading=max_reading
@@ -16,6 +17,35 @@ module MSG_Chumby
       reading=Flukso::UTCReading.new(Time.now.to_i, value)
       #puts "generated random reading #{reading}"
       @reading_cache.update_last_reading(reading);
+    end
+  end
+  class LastMinuteImporter
+    def initialize(reading_cache, location, local_id)
+      @reading_cache=reading_cache
+      @query=FluksoLocal::Query.new(location)
+      @local_id=local_id
+    end
+    def doWork
+      begin
+        values=@query.getReadings(@local_id);
+        # handle last value
+        last_value=values.max
+        #puts "Last reading: timestamp = #{last_value[0]}, value=#{last_value[1]}"
+        reading=Flukso::UTCReading.new(last_value[0], last_value[1])
+        @reading_cache.update_last_reading(reading);
+        # now handle last minute
+        last_minute=Array.new();
+        values.each{|current|
+          currentreading=Flukso::UTCReading.new(current[0], current[1])
+          last_minute << currentreading
+        }
+        last_minute.sort! {|a, b|
+          a.utc_timestamp <=> b.utc_timestamp
+        }
+        @reading_cache.update_last_minute(last_minute);
+      rescue StandardError => bam
+        puts "Cannot retrieve last minute: #{bam}"
+      end
     end
   end
   class LastHourImporter
