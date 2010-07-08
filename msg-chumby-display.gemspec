@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{msg-chumby-display}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mathias Dalheimer"]
-  s.date = %q{2010-06-08}
+  s.date = %q{2010-07-08}
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/msg-chumby-daemon",
+     "etc/msgchumbydaemonrc",
      "lib/msg-chumby-daemon.rb",
      "lib/msg-chumby-daemon/http-xml-server.rb",
      "lib/msg-chumby-daemon/reading-cache.rb",
@@ -32,14 +33,16 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_msg-chumby-display.rb",
      "widget/currentpower/Makefile",
+     "widget/currentpower/currentpower Report.txt",
      "widget/currentpower/currentpower.fla",
      "widget/currentpower/currentpower.html",
+     "widget/currentpower/currentpower.swd",
      "widget/currentpower/currentpower.swf"
   ]
   s.homepage = %q{http://github.com/gonium/msg-chumby-display}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Displays various information from the mySmartGrid project on your Chumby}
   s.test_files = [
     "test/helper.rb",
@@ -50,19 +53,22 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<flukso4r>, [">= 0.3.1"])
       s.add_runtime_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_runtime_dependency(%q<xml-simple>, [">= 1.0.12"])
+      s.add_runtime_dependency(%q<msg-flukso-localinterface>, [">= 0.0.1"])
     else
       s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
       s.add_dependency(%q<mongrel>, [">= 1.1.5"])
       s.add_dependency(%q<xml-simple>, [">= 1.0.12"])
+      s.add_dependency(%q<msg-flukso-localinterface>, [">= 0.0.1"])
     end
   else
     s.add_dependency(%q<flukso4r>, [">= 0.3.1"])
     s.add_dependency(%q<mongrel>, [">= 1.1.5"])
     s.add_dependency(%q<xml-simple>, [">= 1.0.12"])
+    s.add_dependency(%q<msg-flukso-localinterface>, [">= 0.0.1"])
   end
 end
 
