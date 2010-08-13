@@ -31,12 +31,12 @@ Can be easily adapted by exchanging the three MovieClips with own designs.
   Widget(swf) and Flash(fla) file for the lightbulb widget using only one frame.
 
 - Gluehlampe_frames.swf | .fla
-   Widget(swf) and Flash(fla) file for the lightbulb widget using multiple frames.
+  Widget(swf) and Flash(fla) file for the lightbulb widget using multiple frames.
 
 - XMLParse.as
   AS2 file which handles the XML parsing. 
 
--DataArray.as
+- DataArray.as
   AS2 file which handles the received data and provides different access methods.
  
 - com.greensock.*
