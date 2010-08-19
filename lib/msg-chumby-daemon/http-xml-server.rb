@@ -152,8 +152,25 @@ module MSG_Chumby
     end
   end
 
+  class BoundaryHandler < Mongrel::HttpHandler
+    def initialize(boundaries)
+      @boundaries = 
+       {'low' => [boundaries[:low]],
+        'mid' => [boundaries[:mid]],
+        'high' => [boundaries[:high]]}
+      @cached_document=XmlSimple.xml_out(@boundaries ,{'RootName' => "consumption"})
+    end
+    def process(request, response)
+      response.start(200) do |head,out|
+        head["Content-Type"] = "text/xml"
+        out.write(@cached_document);
+      end
+    end
+  end
+
+
   class HTTP_XML_Server
-    def initialize(host, port, reading_cache)
+    def initialize(host, port, reading_cache, boundaries)
       @server = Mongrel::HttpServer.new(host, port)
       @server.register("/time", TimeHandler.new)
       @server.register("/reset", ResetHandler.new)
@@ -161,6 +178,8 @@ module MSG_Chumby
       @server.register("/last_minute", LastMinuteHandler.new(reading_cache))
       @server.register("/last_hour", LastHourHandler.new(reading_cache))
       @server.register("/last_day", LastDayHandler.new(reading_cache))
+      @server.register("/last_day", LastDayHandler.new(reading_cache))
+      @server.register("/boundary_values", BoundaryHandler.new(boundaries))
     end
     def start
       @threads=@server.run

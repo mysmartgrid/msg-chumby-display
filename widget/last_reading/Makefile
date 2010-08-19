@@ -1,9 +1,9 @@
-SWF_FILE=energietacho.swf
+#SWF_FILE=energietacho.swf
 #SWF_FILE=Gluehlampe.swf
-#SWF_FILE=Gluehlampe_frames.swf
+SWF_FILE=Gluehlampe_frames.swf
 CHUMBY_PATH=/tmp
 CHUMBY_USER=root
-CHUMBY_IP=192.168.1.24
+CHUMBY_IP=192.168.1.100
 
 default: help
 
