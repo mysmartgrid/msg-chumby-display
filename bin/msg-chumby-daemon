@@ -92,6 +92,11 @@ else
   end
   local_id=$CONFIG['FLUKSO_LOCAL_ID']
   puts "Using Flukso at location #{location} with ID #{local_id}" if $verbose
+  low_bound=$CONFIG['CONSUMPTION_LOW']
+  mid_bound=$CONFIG['CONSUMPTION_MID']
+  high_bound=$CONFIG['CONSUMPTION_HIGH']
+  boundaries = {:low => low_bound, :mid => mid_bound, :high => high_bound}
+  puts "with consumption boundaries #{boundaries}" if $verbose
 end
 
 reading_cache=MSG_Chumby::Reading_Cache.new();
@@ -101,7 +106,7 @@ $lasthour_importer=MSG_Chumby::LastHourImporter.new(reading_cache, sensor_id, to
 $lastday_importer=MSG_Chumby::LastDayImporter.new(reading_cache, sensor_id, token);
 $shortterm_thread=nil;
 $longterm_thread=nil;
-$server=MSG_Chumby::HTTP_XML_Server.new("0.0.0.0", 3000, reading_cache);
+$server=MSG_Chumby::HTTP_XML_Server.new("0.0.0.0", 3000, reading_cache, boundaries);
 
 
 def startAll
