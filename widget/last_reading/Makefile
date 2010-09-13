@@ -1,4 +1,4 @@
-#SWF_FILE=energietacho.swf
+SWF_FILE=energietacho.swf
 #SWF_FILE=Gluehlampe.swf
 #SWF_FILE=Gluehlampe_frames.swf
 CHUMBY_PATH=/tmp
