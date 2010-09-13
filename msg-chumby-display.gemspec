@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mathias Dalheimer"]
-  s.date = %q{2010-07-08}
+  s.date = %q{2010-09-13}
   s.default_executable = %q{msg-chumby-daemon}
   s.description = %q{The mySmartGrid project provides means to manage your household energy consumption. This gem provides the runtime environment for the Chumby: it queries the mySmartGrid webservice and forwards that information to a Flash application running on the Chumby.}
   s.email = %q{md@gonium.net}
@@ -37,7 +37,33 @@ Gem::Specification.new do |s|
      "widget/currentpower/currentpower.fla",
      "widget/currentpower/currentpower.html",
      "widget/currentpower/currentpower.swd",
-     "widget/currentpower/currentpower.swf"
+     "widget/currentpower/currentpower.swf",
+     "widget/last_reading/DataArray.as",
+     "widget/last_reading/Gluehlampe.fla",
+     "widget/last_reading/Gluehlampe.swf",
+     "widget/last_reading/Gluehlampe_frames.fla",
+     "widget/last_reading/Gluehlampe_frames.swf",
+     "widget/last_reading/Makefile",
+     "widget/last_reading/Makefile.orig",
+     "widget/last_reading/README.rdoc",
+     "widget/last_reading/README.rtf",
+     "widget/last_reading/XmlParse.as",
+     "widget/last_reading/caurina/transitions/AuxFunctions.as",
+     "widget/last_reading/caurina/transitions/Equations.as",
+     "widget/last_reading/caurina/transitions/PropertyInfoObj.as",
+     "widget/last_reading/caurina/transitions/SpecialProperty.as",
+     "widget/last_reading/caurina/transitions/SpecialPropertyModifier.as",
+     "widget/last_reading/caurina/transitions/SpecialPropertySplitter.as",
+     "widget/last_reading/caurina/transitions/TweenListObj.as",
+     "widget/last_reading/caurina/transitions/Tweener.as",
+     "widget/last_reading/caurina/transitions/properties/ColorShortcuts.as",
+     "widget/last_reading/caurina/transitions/properties/CurveModifiers.as",
+     "widget/last_reading/caurina/transitions/properties/DisplayShortcuts.as",
+     "widget/last_reading/caurina/transitions/properties/FilterShortcuts.as",
+     "widget/last_reading/caurina/transitions/properties/SoundShortcuts.as",
+     "widget/last_reading/caurina/transitions/properties/TextShortcuts.as",
+     "widget/last_reading/energietacho.fla",
+     "widget/last_reading/energietacho.swf"
   ]
   s.homepage = %q{http://github.com/gonium/msg-chumby-display}
   s.rdoc_options = ["--charset=UTF-8"]
