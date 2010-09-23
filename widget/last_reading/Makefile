@@ -1,8 +1,13 @@
 SWF_FILE=energietacho.swf
 #SWF_FILE=Gluehlampe.swf
 #SWF_FILE=Gluehlampe_frames.swf
+#SWF_FILE=EnergyGraph_default.swf
+#SWF_FILE=EnergyGraph_log.swf
+#SWF_FILE=EnergyGraph_section.swf
 CHUMBY_PATH=/tmp
 CHUMBY_USER=root
+
+#Put your local Chumby IP here
 CHUMBY_IP=192.168.21.209
 
 default: help
