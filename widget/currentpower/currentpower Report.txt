@@ -1,32 +1,32 @@
-currentpower.swf Filmbericht
------------------------------
+﻿currentpower.swf Movie Report
+------------------------------
 
-Metadaten
----------
-Byte    Wert
-----    ----
-1290    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> <xmp:CreatorTool>Adobe Flash CS4 Professional</xmp:CreatorTool> <xmp:CreateDate>2010-03-15T15:58:56+01:00</xmp:CreateDate> <xmp:MetadataDate>2010-08-16T11:25:22+02:00</xmp:MetadataDate> <xmp:ModifyDate>2010-08-16T11:25:22+02:00</xmp:ModifyDate> </rdf:Description> <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"> <xmpMM:InstanceID>xmp.iid:F77F1174072068118F62A77E962FFA57</xmpMM:InstanceID> <xmpMM:DocumentID>xmp.did:F77F1174072068118F62A77E962FFA57</xmpMM:DocumentID> <xmpMM:OriginalDocumentID>xmp.did:F77F11740720681193E68700E4C8E173</xmpMM:OriginalDocumentID> <xmpMM:DerivedFrom rdf:parseType="Resource"> <stRef:instanceID>xmp.iid:F87F11740720681191099C69294AD041</stRef:instanceID> <stRef:documentID>xmp.did:F87F11740720681191099C69294AD041</stRef:documentID> <stRef:originalDocumentID>xmp.did:F77F11740720681193E68700E4C8E173</stRef:originalDocumentID> </xmpMM:DerivedFrom> </rdf:Description> <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> <dc:format>application/x-shockwave-flash</dc:format> </rdf:Description> </rdf:RDF> 
+Metadata
+--------
+Bytes         Value
+----------    -----
+      1061    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> <xmp:CreatorTool>Adobe Flash CS4 Professional</xmp:CreatorTool> <xmp:CreateDate>2010-03-15T15:58:56+01:00</xmp:CreateDate> <xmp:MetadataDate>2010-10-22T14:36:08+02:00</xmp:MetadataDate> <xmp:ModifyDate>2010-10-22T14:36:08+02:00</xmp:ModifyDate> </rdf:Description> <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/" xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"> <xmpMM:InstanceID>xmp.iid:E27CEE1B0C2068118A6DF8A3B8DFB098</xmpMM:InstanceID> <xmpMM:DocumentID>xmp.did:E27CEE1B0C2068118A6DF8A3B8DFB098</xmpMM:DocumentID> <xmpMM:OriginalDocumentID>xmp.did:F77F11740720681193E68700E4C8E173</xmpMM:OriginalDocumentID> <xmpMM:DerivedFrom rdf:parseType="Resource"> <stRef:instanceID>xmp.iid:F87F11740720681191099C69294AD041</stRef:instanceID> <stRef:documentID>xmp.did:F87F11740720681191099C69294AD041</stRef:documentID> <stRef:originalDocumentID>xmp.did:F77F11740720681193E68700E4C8E173</stRef:originalDocumentID> </xmpMM:DerivedFrom> </rdf:Description> <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> <dc:format>application/x-shockwave-flash</dc:format> </rdf:Description> </rdf:RDF> 
 
-Bild #    Bild Byte    Gesamt Byte    Szene
-------    ---------    -----------    ----------------
-      1          16089          16089    Szene 1 (AS 2.0-Klassen Exportbild)
+Frame #    Frame Bytes    Total Bytes    Scene
+-------    -----------    -----------    -----
+      1          42835          42835    Szene 1 (AS 2.0 Classes Export Frame)
 
-Szene                        Form Byte    Text Byte    ActionScript Byte
--------------------------    ---------    ---------    -----------------
-Szene 1                                0           523                  1275
+Scene      Shape Bytes    Text Bytes    ActionScript Bytes
+-------    -----------    ----------    ------------------
+Szene 1              0           435                  1186
 
-Symbol                       Form Byte    Text Byte    ActionScript Byte
--------------------------    ---------    ---------    -----------------
-reset_button                        9877             0                     0
+Symbol          Shape Bytes    Text Bytes    ActionScript Bytes
+------------    -----------    ----------    ------------------
+reset_button           8129             0                     0
 
-Schriftart                 Byte        Zeichen    
------------------------    --------    -----------
-AllerDisplay                   1502    AWaekltu
-Aller                          1375     Wenortv
+Font Name       Bytes         Characters
+------------    ----------    ----------
+AllerDisplay         15596     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
+Aller                16220     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
 
-ActionScript Byte    Position
------------------    --------
-              1275    Szene 1:Ebene 1:1
+ActionScript Bytes    Location
+------------------    --------
+              1186    Szene 1:Ebene 1:1
 
 
 
