@@ -86,6 +86,19 @@ local command = {
 }
 ox.mkdir(config.DATADIR);
 
+-- write the xml boundaries to a file
+local boundary_xml = "<?xml version=\"1.0\"?>" ..
+               "<consumption>" .. 
+               "<low>" .. config.CONSUMPTION.LOW .. "</low>" ..
+               "<mid>" .. config.CONSUMPTION.MID .. "</mid>" .. 
+               "<high>" .. config.CONSUMPTION.HIGH .. "</high>" ..
+               "</consumption>"
+local bf_name=config.DATADIR .. "/boundary_values";
+print(bf_name);
+local bf = assert(io.open(bf_name, "w"));
+bf:write(boundary_xml)
+bf:close()
+
 function ticker()
   return coroutine.create (function ()
     while true do

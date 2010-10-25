@@ -4,6 +4,11 @@ config = {
   TOKEN   = "",
   DATADIR = "/Users/md/tmp/flukso",
   BINPATH = "/Users/md/Projects/mysmartgrid/libflukso.git",
-  CMD     = "/build/src/flukso-getvalues"
+  CMD     = "/build/src/flukso-getvalues",
+  CONSUMPTION = {
+    LOW   = 20,
+    MID   = 100,
+    HIGH  = 150
+  }
 }
 
