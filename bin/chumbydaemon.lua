@@ -27,7 +27,7 @@ dofile(arg[1])
 
 --todo: detect environment. if on chumby, adjust the module paths,
 --on all other platforms, require the luarocks loader.
-f=io.open("/bin/chumbyflash", "r");
+f=io.open("/usr/chumby", "r");
 if f == nil then
   -- this is not a chumby - assume a working luarocks installation.
   is_chumby=false
